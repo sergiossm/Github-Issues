@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:github_issues/constants/api.dart';
 import 'package:github_issues/models/issue/freezed_issue/freezed_issue.dart';
 import 'package:github_issues/models/issue/freezed_issue_list/freezed_issue_list.dart';
+import 'package:github_issues/widgets/issue_list_item.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class Home extends StatelessWidget {
@@ -64,12 +63,14 @@ class Home extends StatelessWidget {
                 itemCount: issues.length,
                 padding: EdgeInsets.all(8),
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      issues[index].title,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text('#${issues[index].id}'),
+                  Issue issue = issues[index];
+                  return IssueListItem(
+                    number: issue.number,
+                    title: issue.title,
+                    createdAt: issue.createdAt,
+                    open: issue.state == "OPEN",
+                    labels: issue.labels.labelList,
+                    nComments: issue.nComments,
                   );
                 },
               );

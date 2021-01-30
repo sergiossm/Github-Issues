@@ -17,5 +17,5 @@ _$_LabelList _$_$_LabelListFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_LabelListToJson(_$_LabelList instance) =>
     <String, dynamic>{
-      'labelList': instance.labelList,
+      'nodes': instance.labelList,
     };

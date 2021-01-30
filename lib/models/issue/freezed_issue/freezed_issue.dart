@@ -1,4 +1,4 @@
-import 'package:github_issues/models/issue/label/freezed_label_list/freezed_label_list.dart';
+import 'package:github_issues/models/label/freezed_label_list/freezed_label_list.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -14,7 +14,8 @@ abstract class Issue with _$Issue {
     String state,
     String createdAt,
     String authorAssociation,
-    LabelList labels,
+    @nullable LabelList labels,
+    int nComments,
     String bodyHTML,
   ) = _Issue;
 

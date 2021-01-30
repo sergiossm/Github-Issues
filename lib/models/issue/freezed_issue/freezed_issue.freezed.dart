@@ -24,7 +24,8 @@ class _$IssueTearOff {
       String state,
       String createdAt,
       String authorAssociation,
-      LabelList labels,
+      @nullable LabelList labels,
+      int nComments,
       String bodyHTML) {
     return _Issue(
       id,
@@ -34,6 +35,7 @@ class _$IssueTearOff {
       createdAt,
       authorAssociation,
       labels,
+      nComments,
       bodyHTML,
     );
   }
@@ -56,7 +58,9 @@ mixin _$Issue {
   String get state;
   String get createdAt;
   String get authorAssociation;
+  @nullable
   LabelList get labels;
+  int get nComments;
   String get bodyHTML;
 
   Map<String, dynamic> toJson();
@@ -75,7 +79,8 @@ abstract class $IssueCopyWith<$Res> {
       String state,
       String createdAt,
       String authorAssociation,
-      LabelList labels,
+      @nullable LabelList labels,
+      int nComments,
       String bodyHTML});
 
   $LabelListCopyWith<$Res> get labels;
@@ -98,6 +103,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
     Object createdAt = freezed,
     Object authorAssociation = freezed,
     Object labels = freezed,
+    Object nComments = freezed,
     Object bodyHTML = freezed,
   }) {
     return _then(_value.copyWith(
@@ -110,6 +116,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
           ? _value.authorAssociation
           : authorAssociation as String,
       labels: labels == freezed ? _value.labels : labels as LabelList,
+      nComments: nComments == freezed ? _value.nComments : nComments as int,
       bodyHTML: bodyHTML == freezed ? _value.bodyHTML : bodyHTML as String,
     ));
   }
@@ -137,7 +144,8 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       String state,
       String createdAt,
       String authorAssociation,
-      LabelList labels,
+      @nullable LabelList labels,
+      int nComments,
       String bodyHTML});
 
   @override
@@ -162,6 +170,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
     Object createdAt = freezed,
     Object authorAssociation = freezed,
     Object labels = freezed,
+    Object nComments = freezed,
     Object bodyHTML = freezed,
   }) {
     return _then(_Issue(
@@ -174,6 +183,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
           ? _value.authorAssociation
           : authorAssociation as String,
       labels == freezed ? _value.labels : labels as LabelList,
+      nComments == freezed ? _value.nComments : nComments as int,
       bodyHTML == freezed ? _value.bodyHTML : bodyHTML as String,
     ));
   }
@@ -183,15 +193,23 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Issue implements _Issue {
-  const _$_Issue(this.id, this.number, this.title, this.state, this.createdAt,
-      this.authorAssociation, this.labels, this.bodyHTML)
+  const _$_Issue(
+      this.id,
+      this.number,
+      this.title,
+      this.state,
+      this.createdAt,
+      this.authorAssociation,
+      @nullable this.labels,
+      this.nComments,
+      this.bodyHTML)
       : assert(id != null),
         assert(number != null),
         assert(title != null),
         assert(state != null),
         assert(createdAt != null),
         assert(authorAssociation != null),
-        assert(labels != null),
+        assert(nComments != null),
         assert(bodyHTML != null);
 
   factory _$_Issue.fromJson(Map<String, dynamic> json) =>
@@ -210,13 +228,16 @@ class _$_Issue implements _Issue {
   @override
   final String authorAssociation;
   @override
+  @nullable
   final LabelList labels;
+  @override
+  final int nComments;
   @override
   final String bodyHTML;
 
   @override
   String toString() {
-    return 'Issue(id: $id, number: $number, title: $title, state: $state, createdAt: $createdAt, authorAssociation: $authorAssociation, labels: $labels, bodyHTML: $bodyHTML)';
+    return 'Issue(id: $id, number: $number, title: $title, state: $state, createdAt: $createdAt, authorAssociation: $authorAssociation, labels: $labels, nComments: $nComments, bodyHTML: $bodyHTML)';
   }
 
   @override
@@ -239,6 +260,9 @@ class _$_Issue implements _Issue {
                     .equals(other.authorAssociation, authorAssociation)) &&
             (identical(other.labels, labels) ||
                 const DeepCollectionEquality().equals(other.labels, labels)) &&
+            (identical(other.nComments, nComments) ||
+                const DeepCollectionEquality()
+                    .equals(other.nComments, nComments)) &&
             (identical(other.bodyHTML, bodyHTML) ||
                 const DeepCollectionEquality()
                     .equals(other.bodyHTML, bodyHTML)));
@@ -254,6 +278,7 @@ class _$_Issue implements _Issue {
       const DeepCollectionEquality().hash(createdAt) ^
       const DeepCollectionEquality().hash(authorAssociation) ^
       const DeepCollectionEquality().hash(labels) ^
+      const DeepCollectionEquality().hash(nComments) ^
       const DeepCollectionEquality().hash(bodyHTML);
 
   @JsonKey(ignore: true)
@@ -275,7 +300,8 @@ abstract class _Issue implements Issue {
       String state,
       String createdAt,
       String authorAssociation,
-      LabelList labels,
+      @nullable LabelList labels,
+      int nComments,
       String bodyHTML) = _$_Issue;
 
   factory _Issue.fromJson(Map<String, dynamic> json) = _$_Issue.fromJson;
@@ -293,7 +319,10 @@ abstract class _Issue implements Issue {
   @override
   String get authorAssociation;
   @override
+  @nullable
   LabelList get labels;
+  @override
+  int get nComments;
   @override
   String get bodyHTML;
   @override

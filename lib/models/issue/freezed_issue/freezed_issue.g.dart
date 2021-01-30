@@ -17,6 +17,7 @@ _$_Issue _$_$_IssueFromJson(Map<String, dynamic> json) {
     json['labels'] == null
         ? null
         : LabelList.fromJson(json['labels'] as Map<String, dynamic>),
+    json['comments'] == null ? 0 : json['comments']['totalCount'] as int,
     json['bodyHTML'] as String,
   );
 }
@@ -29,5 +30,6 @@ Map<String, dynamic> _$_$_IssueToJson(_$_Issue instance) => <String, dynamic>{
       'createdAt': instance.createdAt,
       'authorAssociation': instance.authorAssociation,
       'labels': instance.labels,
+      'nComments': instance.nComments,
       'bodyHTML': instance.bodyHTML,
     };
