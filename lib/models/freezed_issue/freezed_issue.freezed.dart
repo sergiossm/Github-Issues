@@ -41,7 +41,8 @@ class _$IssueTearOff {
       String author_association,
       String active_lock_reason,
       Map<dynamic, dynamic> pull_request,
-      String body) {
+      String body,
+      String performed_via_github_app) {
     return _Issue(
       url,
       repository_url,
@@ -67,6 +68,7 @@ class _$IssueTearOff {
       active_lock_reason,
       pull_request,
       body,
+      performed_via_github_app,
     );
   }
 
@@ -106,6 +108,7 @@ mixin _$Issue {
   String get active_lock_reason;
   Map<dynamic, dynamic> get pull_request;
   String get body;
+  String get performed_via_github_app;
 
   Map<String, dynamic> toJson();
   @JsonKey(ignore: true)
@@ -140,7 +143,8 @@ abstract class $IssueCopyWith<$Res> {
       String author_association,
       String active_lock_reason,
       Map<dynamic, dynamic> pull_request,
-      String body});
+      String body,
+      String performed_via_github_app});
 }
 
 /// @nodoc
@@ -177,6 +181,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
     Object active_lock_reason = freezed,
     Object pull_request = freezed,
     Object body = freezed,
+    Object performed_via_github_app = freezed,
   }) {
     return _then(_value.copyWith(
       url: url == freezed ? _value.url : url as String,
@@ -221,6 +226,9 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
           ? _value.pull_request
           : pull_request as Map<dynamic, dynamic>,
       body: body == freezed ? _value.body : body as String,
+      performed_via_github_app: performed_via_github_app == freezed
+          ? _value.performed_via_github_app
+          : performed_via_github_app as String,
     ));
   }
 }
@@ -254,7 +262,8 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       String author_association,
       String active_lock_reason,
       Map<dynamic, dynamic> pull_request,
-      String body});
+      String body,
+      String performed_via_github_app});
 }
 
 /// @nodoc
@@ -292,6 +301,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
     Object active_lock_reason = freezed,
     Object pull_request = freezed,
     Object body = freezed,
+    Object performed_via_github_app = freezed,
   }) {
     return _then(_Issue(
       url == freezed ? _value.url : url as String,
@@ -326,6 +336,9 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
           ? _value.pull_request
           : pull_request as Map<dynamic, dynamic>,
       body == freezed ? _value.body : body as String,
+      performed_via_github_app == freezed
+          ? _value.performed_via_github_app
+          : performed_via_github_app as String,
     ));
   }
 }
@@ -358,7 +371,8 @@ class _$_Issue implements _Issue {
       this.author_association,
       this.active_lock_reason,
       this.pull_request,
-      this.body)
+      this.body,
+      this.performed_via_github_app)
       : assert(url != null),
         assert(repository_url != null),
         assert(labels_url != null),
@@ -382,7 +396,8 @@ class _$_Issue implements _Issue {
         assert(author_association != null),
         assert(active_lock_reason != null),
         assert(pull_request != null),
-        assert(body != null);
+        assert(body != null),
+        assert(performed_via_github_app != null);
 
   factory _$_Issue.fromJson(Map<String, dynamic> json) =>
       _$_$_IssueFromJson(json);
@@ -435,10 +450,12 @@ class _$_Issue implements _Issue {
   final Map<dynamic, dynamic> pull_request;
   @override
   final String body;
+  @override
+  final String performed_via_github_app;
 
   @override
   String toString() {
-    return 'Issue(url: $url, repository_url: $repository_url, labels_url: $labels_url, comments_url: $comments_url, events_url: $events_url, html_url: $html_url, id: $id, node_id: $node_id, number: $number, title: $title, user: $user, labels: $labels, state: $state, locked: $locked, assignee: $assignee, assignees: $assignees, milestone: $milestone, comments: $comments, created_at: $created_at, updated_at: $updated_at, author_association: $author_association, active_lock_reason: $active_lock_reason, pull_request: $pull_request, body: $body)';
+    return 'Issue(url: $url, repository_url: $repository_url, labels_url: $labels_url, comments_url: $comments_url, events_url: $events_url, html_url: $html_url, id: $id, node_id: $node_id, number: $number, title: $title, user: $user, labels: $labels, state: $state, locked: $locked, assignee: $assignee, assignees: $assignees, milestone: $milestone, comments: $comments, created_at: $created_at, updated_at: $updated_at, author_association: $author_association, active_lock_reason: $active_lock_reason, pull_request: $pull_request, body: $body, performed_via_github_app: $performed_via_github_app)';
   }
 
   @override
@@ -507,7 +524,11 @@ class _$_Issue implements _Issue {
                 const DeepCollectionEquality()
                     .equals(other.pull_request, pull_request)) &&
             (identical(other.body, body) ||
-                const DeepCollectionEquality().equals(other.body, body)));
+                const DeepCollectionEquality().equals(other.body, body)) &&
+            (identical(
+                    other.performed_via_github_app, performed_via_github_app) ||
+                const DeepCollectionEquality().equals(
+                    other.performed_via_github_app, performed_via_github_app)));
   }
 
   @override
@@ -536,7 +557,8 @@ class _$_Issue implements _Issue {
       const DeepCollectionEquality().hash(author_association) ^
       const DeepCollectionEquality().hash(active_lock_reason) ^
       const DeepCollectionEquality().hash(pull_request) ^
-      const DeepCollectionEquality().hash(body);
+      const DeepCollectionEquality().hash(body) ^
+      const DeepCollectionEquality().hash(performed_via_github_app);
 
   @JsonKey(ignore: true)
   @override
@@ -574,7 +596,8 @@ abstract class _Issue implements Issue {
       String author_association,
       String active_lock_reason,
       Map<dynamic, dynamic> pull_request,
-      String body) = _$_Issue;
+      String body,
+      String performed_via_github_app) = _$_Issue;
 
   factory _Issue.fromJson(Map<String, dynamic> json) = _$_Issue.fromJson;
 
@@ -626,6 +649,8 @@ abstract class _Issue implements Issue {
   Map<dynamic, dynamic> get pull_request;
   @override
   String get body;
+  @override
+  String get performed_via_github_app;
   @override
   @JsonKey(ignore: true)
   _$IssueCopyWith<_Issue> get copyWith;

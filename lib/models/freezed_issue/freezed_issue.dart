@@ -31,6 +31,7 @@ abstract class Issue with _$Issue {
     String active_lock_reason,
     Map pull_request,
     String body,
+    String performed_via_github_app,
   ) = _Issue;
 
   factory Issue.fromJson(Map<String, dynamic> json) => _$IssueFromJson(json);

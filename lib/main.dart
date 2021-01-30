@@ -5,6 +5,7 @@ import 'package:github_issues/providers/auth_provider.dart';
 import 'package:github_issues/screens/home.dart';
 import 'package:github_issues/screens/login.dart';
 import 'package:github_issues/screens/splash.dart';
+import 'package:github_issues/services/issues_api_service.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider<AuthProvider>(
         create: (_) => AuthProvider(),
         child: MaterialApp(
-          home: Consumer(
+          home: Consumer<AuthProvider>(
             builder: (_, AuthProvider provider, __) {
               switch (provider.status) {
                 case AuthStatus.Uninitialized:
@@ -32,7 +33,12 @@ class MyApp extends StatelessWidget {
                     },
                   );
                 case AuthStatus.Authenticated:
-                  return Home();
+                  return Provider<IssuesApiService>(
+                    create: (_) => IssuesApiService.create(),
+                    dispose: (_, IssuesApiService service) =>
+                        service.client.dispose(),
+                    child: Home(),
+                  );
                 default:
                   return Login();
               }

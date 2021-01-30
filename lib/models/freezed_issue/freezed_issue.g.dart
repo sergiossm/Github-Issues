@@ -32,6 +32,7 @@ _$_Issue _$_$_IssueFromJson(Map<String, dynamic> json) {
     json['active_lock_reason'] as String,
     json['pull_request'] as Map<String, dynamic>,
     json['body'] as String,
+    json['performed_via_github_app'] as String,
   );
 }
 
@@ -60,4 +61,5 @@ Map<String, dynamic> _$_$_IssueToJson(_$_Issue instance) => <String, dynamic>{
       'active_lock_reason': instance.active_lock_reason,
       'pull_request': instance.pull_request,
       'body': instance.body,
+      'performed_via_github_app': instance.performed_via_github_app,
     };
