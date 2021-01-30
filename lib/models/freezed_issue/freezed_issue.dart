@@ -23,7 +23,7 @@ abstract class Issue with _$Issue {
     bool locked,
     @nullable Map assignee,
     List assignees,
-    @nullable String milestone,
+    @nullable Map milestone,
     int comments,
     String created_at,
     String updated_at,

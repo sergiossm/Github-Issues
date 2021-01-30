@@ -34,7 +34,7 @@ class _$IssueTearOff {
       bool locked,
       @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      @nullable String milestone,
+      @nullable Map<dynamic, dynamic> milestone,
       int comments,
       String created_at,
       String updated_at,
@@ -104,7 +104,7 @@ mixin _$Issue {
   Map<dynamic, dynamic> get assignee;
   List<dynamic> get assignees;
   @nullable
-  String get milestone;
+  Map<dynamic, dynamic> get milestone;
   int get comments;
   String get created_at;
   String get updated_at;
@@ -145,7 +145,7 @@ abstract class $IssueCopyWith<$Res> {
       bool locked,
       @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      @nullable String milestone,
+      @nullable Map<dynamic, dynamic> milestone,
       int comments,
       String created_at,
       String updated_at,
@@ -220,7 +220,9 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
           : assignee as Map<dynamic, dynamic>,
       assignees:
           assignees == freezed ? _value.assignees : assignees as List<dynamic>,
-      milestone: milestone == freezed ? _value.milestone : milestone as String,
+      milestone: milestone == freezed
+          ? _value.milestone
+          : milestone as Map<dynamic, dynamic>,
       comments: comments == freezed ? _value.comments : comments as int,
       created_at:
           created_at == freezed ? _value.created_at : created_at as String,
@@ -266,7 +268,7 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       bool locked,
       @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      @nullable String milestone,
+      @nullable Map<dynamic, dynamic> milestone,
       int comments,
       String created_at,
       String updated_at,
@@ -335,7 +337,9 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
       locked == freezed ? _value.locked : locked as bool,
       assignee == freezed ? _value.assignee : assignee as Map<dynamic, dynamic>,
       assignees == freezed ? _value.assignees : assignees as List<dynamic>,
-      milestone == freezed ? _value.milestone : milestone as String,
+      milestone == freezed
+          ? _value.milestone
+          : milestone as Map<dynamic, dynamic>,
       comments == freezed ? _value.comments : comments as int,
       created_at == freezed ? _value.created_at : created_at as String,
       updated_at == freezed ? _value.updated_at : updated_at as String,
@@ -447,7 +451,7 @@ class _$_Issue implements _Issue {
   final List<dynamic> assignees;
   @override
   @nullable
-  final String milestone;
+  final Map<dynamic, dynamic> milestone;
   @override
   final int comments;
   @override
@@ -610,7 +614,7 @@ abstract class _Issue implements Issue {
       bool locked,
       @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      @nullable String milestone,
+      @nullable Map<dynamic, dynamic> milestone,
       int comments,
       String created_at,
       String updated_at,
@@ -658,7 +662,7 @@ abstract class _Issue implements Issue {
   List<dynamic> get assignees;
   @override
   @nullable
-  String get milestone;
+  Map<dynamic, dynamic> get milestone;
   @override
   int get comments;
   @override

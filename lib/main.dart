@@ -1,15 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:github_issues/enums/enums.dart';
+import 'package:github_issues/locator.dart';
 import 'package:github_issues/providers/auth_provider.dart';
+import 'package:github_issues/providers/infinite_list_provider.dart';
 import 'package:github_issues/screens/home.dart';
 import 'package:github_issues/screens/login.dart';
 import 'package:github_issues/screens/splash.dart';
-import 'package:github_issues/services/issues_api_service.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
@@ -33,10 +35,10 @@ class MyApp extends StatelessWidget {
                     },
                   );
                 case AuthStatus.Authenticated:
-                  return Provider<IssuesApiService>(
-                    create: (_) => IssuesApiService.create(),
-                    dispose: (_, IssuesApiService service) =>
-                        service.client.dispose(),
+                  return ChangeNotifierProvider<InfiniteListProvider>(
+                    create: (_) => InfiniteListProvider(),
+                    // dispose: (_, InfiniteListProvider provider) =>
+                    //     provider.dispose(),
                     child: Home(),
                   );
                 default:

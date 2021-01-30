@@ -1,12 +1,15 @@
 import 'package:chopper/chopper.dart';
-import 'package:github_issues/constants/endpoints.dart';
+import 'package:github_issues/constants/api.dart';
 
 part 'issues_api_service.chopper.dart';
 
 @ChopperApi(baseUrl: ISSUES)
 abstract class IssuesApiService extends ChopperService {
   @Get()
-  Future<Response> getIssues();
+  Future<Response> getIssues({
+    @Query() int per_page = 100,
+    @Query() int page = 0,
+  });
 
   @Get(path: '/{id}')
   // Query parameters are specified the same way as @Path

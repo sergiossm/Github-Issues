@@ -24,7 +24,7 @@ _$_Issue _$_$_IssueFromJson(Map<String, dynamic> json) {
     json['locked'] as bool,
     json['assignee'] as Map<String, dynamic>,
     json['assignees'] as List,
-    json['milestone'] as String,
+    json['milestone'] as Map<String, dynamic>,
     json['comments'] as int,
     json['created_at'] as String,
     json['updated_at'] as String,

@@ -17,9 +17,10 @@ class _$IssuesApiService extends IssuesApiService {
   final definitionType = IssuesApiService;
 
   @override
-  Future<Response<dynamic>> getIssues() {
+  Future<Response<dynamic>> getIssues({int per_page = 100, int page = 0}) {
     final $url = '/issues';
-    final $request = Request('GET', $url, client.baseUrl);
+    final $params = <String, dynamic>{'per_page': per_page, 'page': page};
+    final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<dynamic, dynamic>($request);
   }
 
