@@ -3,12 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:github_issues/enums/enums.dart';
 import 'package:github_issues/locator.dart';
 import 'package:github_issues/providers/auth_provider.dart';
-import 'package:github_issues/providers/issues_provider.dart';
-import 'package:github_issues/repositories/issue_repository.dart';
 import 'package:github_issues/screens/home.dart';
 import 'package:github_issues/screens/login.dart';
 import 'package:github_issues/screens/splash.dart';
-import 'package:github_issues/services/graphql_api_service.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -37,14 +34,7 @@ class MyApp extends StatelessWidget {
                     },
                   );
                 case AuthStatus.Authenticated:
-                  return ChangeNotifierProvider<IssuesProvider>(
-                    create: (_) => IssuesProvider(
-                      IssueRepository(
-                          client:
-                              locator<GraphQLApiService>().graphQLClient.value),
-                    ),
-                    child: Home(),
-                  );
+                  return Home();
                 default:
                   return Login();
               }

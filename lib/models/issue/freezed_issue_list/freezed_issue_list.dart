@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:github_issues/models/freezed_issue/freezed_issue.dart';
+import 'package:github_issues/models/issue/freezed_issue/freezed_issue.dart';
 
 part 'freezed_issue_list.freezed.dart';
 part 'freezed_issue_list.g.dart';
