@@ -24,25 +24,26 @@ class _$IssueTearOff {
       String comments_url,
       String events_url,
       String html_url,
-      String id,
+      int id,
       String node_id,
       int number,
       String title,
       Map<dynamic, dynamic> user,
-      Map<dynamic, dynamic> labels,
+      List<dynamic> labels,
       String state,
       bool locked,
-      Map<dynamic, dynamic> assignee,
+      @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      String milestone,
+      @nullable String milestone,
       int comments,
       String created_at,
       String updated_at,
+      @nullable String closed_at,
       String author_association,
-      String active_lock_reason,
-      Map<dynamic, dynamic> pull_request,
+      @nullable String active_lock_reason,
+      @nullable Map<dynamic, dynamic> pull_request,
       String body,
-      String performed_via_github_app) {
+      @nullable String performed_via_github_app) {
     return _Issue(
       url,
       repository_url,
@@ -64,6 +65,7 @@ class _$IssueTearOff {
       comments,
       created_at,
       updated_at,
+      closed_at,
       author_association,
       active_lock_reason,
       pull_request,
@@ -90,24 +92,31 @@ mixin _$Issue {
   String get comments_url;
   String get events_url;
   String get html_url;
-  String get id;
+  int get id;
   String get node_id;
   int get number;
   String get title;
   Map<dynamic, dynamic> get user;
-  Map<dynamic, dynamic> get labels;
+  List<dynamic> get labels;
   String get state;
   bool get locked;
+  @nullable
   Map<dynamic, dynamic> get assignee;
   List<dynamic> get assignees;
+  @nullable
   String get milestone;
   int get comments;
   String get created_at;
   String get updated_at;
+  @nullable
+  String get closed_at;
   String get author_association;
+  @nullable
   String get active_lock_reason;
+  @nullable
   Map<dynamic, dynamic> get pull_request;
   String get body;
+  @nullable
   String get performed_via_github_app;
 
   Map<String, dynamic> toJson();
@@ -126,25 +135,26 @@ abstract class $IssueCopyWith<$Res> {
       String comments_url,
       String events_url,
       String html_url,
-      String id,
+      int id,
       String node_id,
       int number,
       String title,
       Map<dynamic, dynamic> user,
-      Map<dynamic, dynamic> labels,
+      List<dynamic> labels,
       String state,
       bool locked,
-      Map<dynamic, dynamic> assignee,
+      @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      String milestone,
+      @nullable String milestone,
       int comments,
       String created_at,
       String updated_at,
+      @nullable String closed_at,
       String author_association,
-      String active_lock_reason,
-      Map<dynamic, dynamic> pull_request,
+      @nullable String active_lock_reason,
+      @nullable Map<dynamic, dynamic> pull_request,
       String body,
-      String performed_via_github_app});
+      @nullable String performed_via_github_app});
 }
 
 /// @nodoc
@@ -177,6 +187,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
     Object comments = freezed,
     Object created_at = freezed,
     Object updated_at = freezed,
+    Object closed_at = freezed,
     Object author_association = freezed,
     Object active_lock_reason = freezed,
     Object pull_request = freezed,
@@ -196,13 +207,12 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
       events_url:
           events_url == freezed ? _value.events_url : events_url as String,
       html_url: html_url == freezed ? _value.html_url : html_url as String,
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed ? _value.id : id as int,
       node_id: node_id == freezed ? _value.node_id : node_id as String,
       number: number == freezed ? _value.number : number as int,
       title: title == freezed ? _value.title : title as String,
       user: user == freezed ? _value.user : user as Map<dynamic, dynamic>,
-      labels:
-          labels == freezed ? _value.labels : labels as Map<dynamic, dynamic>,
+      labels: labels == freezed ? _value.labels : labels as List<dynamic>,
       state: state == freezed ? _value.state : state as String,
       locked: locked == freezed ? _value.locked : locked as bool,
       assignee: assignee == freezed
@@ -216,6 +226,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
           created_at == freezed ? _value.created_at : created_at as String,
       updated_at:
           updated_at == freezed ? _value.updated_at : updated_at as String,
+      closed_at: closed_at == freezed ? _value.closed_at : closed_at as String,
       author_association: author_association == freezed
           ? _value.author_association
           : author_association as String,
@@ -245,25 +256,26 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       String comments_url,
       String events_url,
       String html_url,
-      String id,
+      int id,
       String node_id,
       int number,
       String title,
       Map<dynamic, dynamic> user,
-      Map<dynamic, dynamic> labels,
+      List<dynamic> labels,
       String state,
       bool locked,
-      Map<dynamic, dynamic> assignee,
+      @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      String milestone,
+      @nullable String milestone,
       int comments,
       String created_at,
       String updated_at,
+      @nullable String closed_at,
       String author_association,
-      String active_lock_reason,
-      Map<dynamic, dynamic> pull_request,
+      @nullable String active_lock_reason,
+      @nullable Map<dynamic, dynamic> pull_request,
       String body,
-      String performed_via_github_app});
+      @nullable String performed_via_github_app});
 }
 
 /// @nodoc
@@ -297,6 +309,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
     Object comments = freezed,
     Object created_at = freezed,
     Object updated_at = freezed,
+    Object closed_at = freezed,
     Object author_association = freezed,
     Object active_lock_reason = freezed,
     Object pull_request = freezed,
@@ -312,12 +325,12 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
       comments_url == freezed ? _value.comments_url : comments_url as String,
       events_url == freezed ? _value.events_url : events_url as String,
       html_url == freezed ? _value.html_url : html_url as String,
-      id == freezed ? _value.id : id as String,
+      id == freezed ? _value.id : id as int,
       node_id == freezed ? _value.node_id : node_id as String,
       number == freezed ? _value.number : number as int,
       title == freezed ? _value.title : title as String,
       user == freezed ? _value.user : user as Map<dynamic, dynamic>,
-      labels == freezed ? _value.labels : labels as Map<dynamic, dynamic>,
+      labels == freezed ? _value.labels : labels as List<dynamic>,
       state == freezed ? _value.state : state as String,
       locked == freezed ? _value.locked : locked as bool,
       assignee == freezed ? _value.assignee : assignee as Map<dynamic, dynamic>,
@@ -326,6 +339,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
       comments == freezed ? _value.comments : comments as int,
       created_at == freezed ? _value.created_at : created_at as String,
       updated_at == freezed ? _value.updated_at : updated_at as String,
+      closed_at == freezed ? _value.closed_at : closed_at as String,
       author_association == freezed
           ? _value.author_association
           : author_association as String,
@@ -362,17 +376,18 @@ class _$_Issue implements _Issue {
       this.labels,
       this.state,
       this.locked,
-      this.assignee,
+      @nullable this.assignee,
       this.assignees,
-      this.milestone,
+      @nullable this.milestone,
       this.comments,
       this.created_at,
       this.updated_at,
+      @nullable this.closed_at,
       this.author_association,
-      this.active_lock_reason,
-      this.pull_request,
+      @nullable this.active_lock_reason,
+      @nullable this.pull_request,
       this.body,
-      this.performed_via_github_app)
+      @nullable this.performed_via_github_app)
       : assert(url != null),
         assert(repository_url != null),
         assert(labels_url != null),
@@ -387,17 +402,12 @@ class _$_Issue implements _Issue {
         assert(labels != null),
         assert(state != null),
         assert(locked != null),
-        assert(assignee != null),
         assert(assignees != null),
-        assert(milestone != null),
         assert(comments != null),
         assert(created_at != null),
         assert(updated_at != null),
         assert(author_association != null),
-        assert(active_lock_reason != null),
-        assert(pull_request != null),
-        assert(body != null),
-        assert(performed_via_github_app != null);
+        assert(body != null);
 
   factory _$_Issue.fromJson(Map<String, dynamic> json) =>
       _$_$_IssueFromJson(json);
@@ -415,7 +425,7 @@ class _$_Issue implements _Issue {
   @override
   final String html_url;
   @override
-  final String id;
+  final int id;
   @override
   final String node_id;
   @override
@@ -425,16 +435,18 @@ class _$_Issue implements _Issue {
   @override
   final Map<dynamic, dynamic> user;
   @override
-  final Map<dynamic, dynamic> labels;
+  final List<dynamic> labels;
   @override
   final String state;
   @override
   final bool locked;
   @override
+  @nullable
   final Map<dynamic, dynamic> assignee;
   @override
   final List<dynamic> assignees;
   @override
+  @nullable
   final String milestone;
   @override
   final int comments;
@@ -443,19 +455,25 @@ class _$_Issue implements _Issue {
   @override
   final String updated_at;
   @override
+  @nullable
+  final String closed_at;
+  @override
   final String author_association;
   @override
+  @nullable
   final String active_lock_reason;
   @override
+  @nullable
   final Map<dynamic, dynamic> pull_request;
   @override
   final String body;
   @override
+  @nullable
   final String performed_via_github_app;
 
   @override
   String toString() {
-    return 'Issue(url: $url, repository_url: $repository_url, labels_url: $labels_url, comments_url: $comments_url, events_url: $events_url, html_url: $html_url, id: $id, node_id: $node_id, number: $number, title: $title, user: $user, labels: $labels, state: $state, locked: $locked, assignee: $assignee, assignees: $assignees, milestone: $milestone, comments: $comments, created_at: $created_at, updated_at: $updated_at, author_association: $author_association, active_lock_reason: $active_lock_reason, pull_request: $pull_request, body: $body, performed_via_github_app: $performed_via_github_app)';
+    return 'Issue(url: $url, repository_url: $repository_url, labels_url: $labels_url, comments_url: $comments_url, events_url: $events_url, html_url: $html_url, id: $id, node_id: $node_id, number: $number, title: $title, user: $user, labels: $labels, state: $state, locked: $locked, assignee: $assignee, assignees: $assignees, milestone: $milestone, comments: $comments, created_at: $created_at, updated_at: $updated_at, closed_at: $closed_at, author_association: $author_association, active_lock_reason: $active_lock_reason, pull_request: $pull_request, body: $body, performed_via_github_app: $performed_via_github_app)';
   }
 
   @override
@@ -514,6 +532,9 @@ class _$_Issue implements _Issue {
             (identical(other.updated_at, updated_at) ||
                 const DeepCollectionEquality()
                     .equals(other.updated_at, updated_at)) &&
+            (identical(other.closed_at, closed_at) ||
+                const DeepCollectionEquality()
+                    .equals(other.closed_at, closed_at)) &&
             (identical(other.author_association, author_association) ||
                 const DeepCollectionEquality()
                     .equals(other.author_association, author_association)) &&
@@ -525,8 +546,7 @@ class _$_Issue implements _Issue {
                     .equals(other.pull_request, pull_request)) &&
             (identical(other.body, body) ||
                 const DeepCollectionEquality().equals(other.body, body)) &&
-            (identical(
-                    other.performed_via_github_app, performed_via_github_app) ||
+            (identical(other.performed_via_github_app, performed_via_github_app) ||
                 const DeepCollectionEquality().equals(
                     other.performed_via_github_app, performed_via_github_app)));
   }
@@ -554,6 +574,7 @@ class _$_Issue implements _Issue {
       const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(created_at) ^
       const DeepCollectionEquality().hash(updated_at) ^
+      const DeepCollectionEquality().hash(closed_at) ^
       const DeepCollectionEquality().hash(author_association) ^
       const DeepCollectionEquality().hash(active_lock_reason) ^
       const DeepCollectionEquality().hash(pull_request) ^
@@ -579,25 +600,26 @@ abstract class _Issue implements Issue {
       String comments_url,
       String events_url,
       String html_url,
-      String id,
+      int id,
       String node_id,
       int number,
       String title,
       Map<dynamic, dynamic> user,
-      Map<dynamic, dynamic> labels,
+      List<dynamic> labels,
       String state,
       bool locked,
-      Map<dynamic, dynamic> assignee,
+      @nullable Map<dynamic, dynamic> assignee,
       List<dynamic> assignees,
-      String milestone,
+      @nullable String milestone,
       int comments,
       String created_at,
       String updated_at,
+      @nullable String closed_at,
       String author_association,
-      String active_lock_reason,
-      Map<dynamic, dynamic> pull_request,
+      @nullable String active_lock_reason,
+      @nullable Map<dynamic, dynamic> pull_request,
       String body,
-      String performed_via_github_app) = _$_Issue;
+      @nullable String performed_via_github_app) = _$_Issue;
 
   factory _Issue.fromJson(Map<String, dynamic> json) = _$_Issue.fromJson;
 
@@ -614,7 +636,7 @@ abstract class _Issue implements Issue {
   @override
   String get html_url;
   @override
-  String get id;
+  int get id;
   @override
   String get node_id;
   @override
@@ -624,16 +646,18 @@ abstract class _Issue implements Issue {
   @override
   Map<dynamic, dynamic> get user;
   @override
-  Map<dynamic, dynamic> get labels;
+  List<dynamic> get labels;
   @override
   String get state;
   @override
   bool get locked;
   @override
+  @nullable
   Map<dynamic, dynamic> get assignee;
   @override
   List<dynamic> get assignees;
   @override
+  @nullable
   String get milestone;
   @override
   int get comments;
@@ -642,14 +666,20 @@ abstract class _Issue implements Issue {
   @override
   String get updated_at;
   @override
+  @nullable
+  String get closed_at;
+  @override
   String get author_association;
   @override
+  @nullable
   String get active_lock_reason;
   @override
+  @nullable
   Map<dynamic, dynamic> get pull_request;
   @override
   String get body;
   @override
+  @nullable
   String get performed_via_github_app;
   @override
   @JsonKey(ignore: true)
