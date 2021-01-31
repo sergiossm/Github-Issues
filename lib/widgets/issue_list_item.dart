@@ -21,63 +21,67 @@ class IssueListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  open
-                      ? MdiIcons.alertCircleOutline
-                      : MdiIcons.alertCircleCheckOutline,
-                  color: open ? Colors.green : Colors.red,
-                  size: 20,
-                ),
-                Container(width: 8),
-                Text(
-                  'flutter / flutter #$number',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black54),
-                ),
-                Expanded(child: Container()),
-                Text(
-                  _parseAndConvertDate,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText2
-                      .copyWith(color: Colors.black54),
-                ),
-              ],
-            ),
-            Container(height: 8),
-            Row(
-              children: [
-                Container(width: 30),
-                Flexible(
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.subtitle1,
+  Widget build(BuildContext context) => InkWell(
+        onTap: () {},
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(height: 8),
+              Row(
+                children: [
+                  Icon(
+                    open
+                        ? MdiIcons.alertCircleOutline
+                        : MdiIcons.alertCircleCheckOutline,
+                    color: open ? Colors.green : Colors.red,
+                    size: 20,
                   ),
-                ),
-                Container(
-                  width: 24,
-                  child: nComments > 0 ? NumComments(nComments) : Container(),
-                ),
-              ],
-            ),
-            Container(height: 4),
-            (labels?.isEmpty ?? true) ? Container() : Labels(labels: labels),
-            Container(height: 12),
-            Divider(
-              height: 1,
-              indent: 30,
-              color: Colors.black26,
-            )
-          ],
+                  Container(width: 8),
+                  Text(
+                    'flutter / flutter #$number',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .copyWith(color: Colors.black54),
+                  ),
+                  Expanded(child: Container()),
+                  Text(
+                    _parseAndConvertDate,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .copyWith(color: Colors.black54),
+                  ),
+                ],
+              ),
+              Container(height: 8),
+              Row(
+                children: [
+                  Container(width: 30),
+                  Flexible(
+                    child: Text(
+                      title,
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                  ),
+                  Container(
+                    width: 24,
+                    child: nComments > 0 ? NumComments(nComments) : Container(),
+                  ),
+                ],
+              ),
+              Container(height: 4),
+              (labels?.isEmpty ?? true) ? Container() : Labels(labels: labels),
+              Container(height: 12),
+              Divider(
+                height: 1,
+                indent: 30,
+                color: Colors.black26,
+              )
+            ],
+          ),
         ),
       );
 

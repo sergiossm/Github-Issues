@@ -23,7 +23,7 @@ class Labels extends StatelessWidget {
                 : Colors.white;
 
             return Container(
-              margin: EdgeInsets.only(bottom: 4),
+              margin: EdgeInsets.only(bottom: 4, right: 6),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.all(Radius.circular(20.0)),

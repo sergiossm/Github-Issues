@@ -1,7 +1,7 @@
 const String ISSUES = '/issues';
 const int PER_PAGE = 100;
 const int NEXT_PAGE_THRESHOLD = 15;
-const String GH_ACCESS_TOKEN = 'f6f9dfdd1576c73f4b9e4830a0cd1e865fd9730c';
+const String GH_ACCESS_TOKEN = 'd1ba68b219424400eb4d3c22510b3d96f2fed8cc';
 const String FETCH_ISSUES_QUERY = '''
 query(\$cursor: String){
   repository(name: "flutter", owner: "flutter") {
