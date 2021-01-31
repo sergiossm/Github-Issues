@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:github_issues/enums/enums.dart';
 import 'package:github_issues/locator.dart';
 import 'package:github_issues/providers/auth_provider.dart';
+import 'package:github_issues/providers/home_provider.dart';
 import 'package:github_issues/screens/home.dart';
 import 'package:github_issues/screens/login.dart';
 import 'package:github_issues/screens/splash.dart';
@@ -34,7 +35,10 @@ class MyApp extends StatelessWidget {
                     },
                   );
                 case AuthStatus.Authenticated:
-                  return Home();
+                  return ChangeNotifierProvider(
+                    create: (_) => HomeProvider(),
+                    child: Home(),
+                  );
                 default:
                   return Login();
               }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:github_issues/locator.dart';
 import 'package:github_issues/models/issue/freezed_issue/freezed_issue.dart';
 import 'package:github_issues/screens/issue_details.dart';
 import 'package:github_issues/utils.dart';
@@ -40,7 +39,7 @@ class IssueListItem extends StatelessWidget {
                   ),
                   Expanded(child: Container()),
                   Text(
-                    locator<Utils>().parseAndConvertDate(_issue.createdAt),
+                    utils.parseAndConvertDate(_issue.createdAt),
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
