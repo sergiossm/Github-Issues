@@ -13,6 +13,9 @@ _$_Issue _$_$_IssueFromJson(Map<String, dynamic> json) {
     json['title'] as String,
     json['state'] as String,
     json['createdAt'] as String,
+    json['author'] == null
+        ? null
+        : Author.fromJson(json['author'] as Map<String, dynamic>),
     json['authorAssociation'] as String,
     json['labels'] == null
         ? null
@@ -28,6 +31,7 @@ Map<String, dynamic> _$_$_IssueToJson(_$_Issue instance) => <String, dynamic>{
       'title': instance.title,
       'state': instance.state,
       'createdAt': instance.createdAt,
+      'author': instance.author,
       'authorAssociation': instance.authorAssociation,
       'labels': instance.labels,
       'nComments': instance.nComments,

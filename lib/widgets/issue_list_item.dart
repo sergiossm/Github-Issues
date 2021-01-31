@@ -1,28 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:github_issues/models/label/freezed_label/freezed_label.dart';
+import 'package:github_issues/locator.dart';
+import 'package:github_issues/models/issue/freezed_issue/freezed_issue.dart';
+import 'package:github_issues/screens/issue_details.dart';
+import 'package:github_issues/utils.dart';
+import 'package:github_issues/widgets/issue_state_icon.dart';
 import 'package:github_issues/widgets/labels.dart';
 import 'package:github_issues/widgets/num_comments.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class IssueListItem extends StatelessWidget {
-  final int number, nComments;
-  final String title, createdAt;
-  final bool open;
-  final List<Label> labels;
+  final Issue _issue;
 
-  IssueListItem({
-    @required this.number,
-    @required this.title,
-    @required this.createdAt,
-    @required this.open,
-    this.labels,
-    this.nComments = 0,
-  });
+  IssueListItem({@required Issue issue}) : _issue = issue;
 
   @override
   Widget build(BuildContext context) => InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => IssueDetails(issue: _issue),
+            ),
+          );
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
@@ -31,16 +29,10 @@ class IssueListItem extends StatelessWidget {
               Container(height: 8),
               Row(
                 children: [
-                  Icon(
-                    open
-                        ? MdiIcons.alertCircleOutline
-                        : MdiIcons.alertCircleCheckOutline,
-                    color: open ? Colors.green : Colors.red,
-                    size: 20,
-                  ),
+                  IssueStateIcon(_issue.state),
                   Container(width: 8),
                   Text(
-                    'flutter / flutter #$number',
+                    'flutter / flutter #${_issue.number}',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
@@ -48,7 +40,7 @@ class IssueListItem extends StatelessWidget {
                   ),
                   Expanded(child: Container()),
                   Text(
-                    _parseAndConvertDate,
+                    locator<Utils>().parseAndConvertDate(_issue.createdAt),
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2
@@ -62,18 +54,22 @@ class IssueListItem extends StatelessWidget {
                   Container(width: 30),
                   Flexible(
                     child: Text(
-                      title,
+                      _issue.title,
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
                   ),
                   Container(
                     width: 24,
-                    child: nComments > 0 ? NumComments(nComments) : Container(),
+                    child: _issue.nComments > 0
+                        ? NumComments(_issue.nComments)
+                        : Container(),
                   ),
                 ],
               ),
               Container(height: 4),
-              (labels?.isEmpty ?? true) ? Container() : Labels(labels: labels),
+              (_issue.labels?.labelList?.isEmpty ?? true)
+                  ? Container()
+                  : Labels(labels: _issue.labels.labelList),
               Container(height: 12),
               Divider(
                 height: 1,
@@ -84,9 +80,4 @@ class IssueListItem extends StatelessWidget {
           ),
         ),
       );
-
-  String get _parseAndConvertDate {
-    var date = DateTime.parse(createdAt);
-    return timeago.format(date, locale: 'en_short');
-  }
 }

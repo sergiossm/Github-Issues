@@ -60,20 +60,13 @@ class Home extends StatelessWidget {
                 .issueList;
 
             return Scaffold(
+              backgroundColor: Colors.white,
               appBar: HomeAppBar(),
               body: ListView.builder(
                 itemCount: issues.length,
                 padding: EdgeInsets.all(8),
                 itemBuilder: (context, index) {
-                  Issue issue = issues[index];
-                  return IssueListItem(
-                    number: issue.number,
-                    title: issue.title,
-                    createdAt: issue.createdAt,
-                    open: issue.state == "OPEN",
-                    labels: issue.labels.labelList,
-                    nComments: issue.nComments,
-                  );
+                  return IssueListItem(issue: issues[index]);
                 },
               ),
             );

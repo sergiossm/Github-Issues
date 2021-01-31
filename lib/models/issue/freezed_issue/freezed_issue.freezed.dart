@@ -23,6 +23,7 @@ class _$IssueTearOff {
       String title,
       String state,
       String createdAt,
+      Author author,
       String authorAssociation,
       @nullable LabelList labels,
       int nComments,
@@ -33,6 +34,7 @@ class _$IssueTearOff {
       title,
       state,
       createdAt,
+      author,
       authorAssociation,
       labels,
       nComments,
@@ -57,6 +59,7 @@ mixin _$Issue {
   String get title;
   String get state;
   String get createdAt;
+  Author get author;
   String get authorAssociation;
   @nullable
   LabelList get labels;
@@ -78,11 +81,13 @@ abstract class $IssueCopyWith<$Res> {
       String title,
       String state,
       String createdAt,
+      Author author,
       String authorAssociation,
       @nullable LabelList labels,
       int nComments,
       String bodyHTML});
 
+  $AuthorCopyWith<$Res> get author;
   $LabelListCopyWith<$Res> get labels;
 }
 
@@ -101,6 +106,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
     Object title = freezed,
     Object state = freezed,
     Object createdAt = freezed,
+    Object author = freezed,
     Object authorAssociation = freezed,
     Object labels = freezed,
     Object nComments = freezed,
@@ -112,6 +118,7 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
       title: title == freezed ? _value.title : title as String,
       state: state == freezed ? _value.state : state as String,
       createdAt: createdAt == freezed ? _value.createdAt : createdAt as String,
+      author: author == freezed ? _value.author : author as Author,
       authorAssociation: authorAssociation == freezed
           ? _value.authorAssociation
           : authorAssociation as String,
@@ -119,6 +126,16 @@ class _$IssueCopyWithImpl<$Res> implements $IssueCopyWith<$Res> {
       nComments: nComments == freezed ? _value.nComments : nComments as int,
       bodyHTML: bodyHTML == freezed ? _value.bodyHTML : bodyHTML as String,
     ));
+  }
+
+  @override
+  $AuthorCopyWith<$Res> get author {
+    if (_value.author == null) {
+      return null;
+    }
+    return $AuthorCopyWith<$Res>(_value.author, (value) {
+      return _then(_value.copyWith(author: value));
+    });
   }
 
   @override
@@ -143,11 +160,14 @@ abstract class _$IssueCopyWith<$Res> implements $IssueCopyWith<$Res> {
       String title,
       String state,
       String createdAt,
+      Author author,
       String authorAssociation,
       @nullable LabelList labels,
       int nComments,
       String bodyHTML});
 
+  @override
+  $AuthorCopyWith<$Res> get author;
   @override
   $LabelListCopyWith<$Res> get labels;
 }
@@ -168,6 +188,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
     Object title = freezed,
     Object state = freezed,
     Object createdAt = freezed,
+    Object author = freezed,
     Object authorAssociation = freezed,
     Object labels = freezed,
     Object nComments = freezed,
@@ -179,6 +200,7 @@ class __$IssueCopyWithImpl<$Res> extends _$IssueCopyWithImpl<$Res>
       title == freezed ? _value.title : title as String,
       state == freezed ? _value.state : state as String,
       createdAt == freezed ? _value.createdAt : createdAt as String,
+      author == freezed ? _value.author : author as Author,
       authorAssociation == freezed
           ? _value.authorAssociation
           : authorAssociation as String,
@@ -199,6 +221,7 @@ class _$_Issue implements _Issue {
       this.title,
       this.state,
       this.createdAt,
+      this.author,
       this.authorAssociation,
       @nullable this.labels,
       this.nComments,
@@ -208,6 +231,7 @@ class _$_Issue implements _Issue {
         assert(title != null),
         assert(state != null),
         assert(createdAt != null),
+        assert(author != null),
         assert(authorAssociation != null),
         assert(nComments != null),
         assert(bodyHTML != null);
@@ -226,6 +250,8 @@ class _$_Issue implements _Issue {
   @override
   final String createdAt;
   @override
+  final Author author;
+  @override
   final String authorAssociation;
   @override
   @nullable
@@ -237,7 +263,7 @@ class _$_Issue implements _Issue {
 
   @override
   String toString() {
-    return 'Issue(id: $id, number: $number, title: $title, state: $state, createdAt: $createdAt, authorAssociation: $authorAssociation, labels: $labels, nComments: $nComments, bodyHTML: $bodyHTML)';
+    return 'Issue(id: $id, number: $number, title: $title, state: $state, createdAt: $createdAt, author: $author, authorAssociation: $authorAssociation, labels: $labels, nComments: $nComments, bodyHTML: $bodyHTML)';
   }
 
   @override
@@ -255,6 +281,8 @@ class _$_Issue implements _Issue {
             (identical(other.createdAt, createdAt) ||
                 const DeepCollectionEquality()
                     .equals(other.createdAt, createdAt)) &&
+            (identical(other.author, author) ||
+                const DeepCollectionEquality().equals(other.author, author)) &&
             (identical(other.authorAssociation, authorAssociation) ||
                 const DeepCollectionEquality()
                     .equals(other.authorAssociation, authorAssociation)) &&
@@ -276,6 +304,7 @@ class _$_Issue implements _Issue {
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(state) ^
       const DeepCollectionEquality().hash(createdAt) ^
+      const DeepCollectionEquality().hash(author) ^
       const DeepCollectionEquality().hash(authorAssociation) ^
       const DeepCollectionEquality().hash(labels) ^
       const DeepCollectionEquality().hash(nComments) ^
@@ -299,6 +328,7 @@ abstract class _Issue implements Issue {
       String title,
       String state,
       String createdAt,
+      Author author,
       String authorAssociation,
       @nullable LabelList labels,
       int nComments,
@@ -316,6 +346,8 @@ abstract class _Issue implements Issue {
   String get state;
   @override
   String get createdAt;
+  @override
+  Author get author;
   @override
   String get authorAssociation;
   @override
