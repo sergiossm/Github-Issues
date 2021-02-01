@@ -3,6 +3,8 @@ import 'package:github_issues/services/theme_service.dart';
 
 GetIt locator = GetIt.instance;
 
-void setupLocator() {
-  locator.registerLazySingleton(() => ThemeService());
+Future<void> setupLocator() async {
+  var themeService = ThemeService();
+  await themeService.init();
+  locator.registerLazySingleton(() => themeService);
 }
