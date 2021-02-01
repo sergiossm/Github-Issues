@@ -9,9 +9,15 @@ The app architecture is based on [`provider`](https://pub.dev/packages/provider)
 UI is inspired by Github's mobile app.
 
 ## Running
+### Access token
 
 Before running this example, generate your own [`Personal access token`](https://github.com/settings/tokens). Add it to `lib/constants/api.dart`, as shown below:
 
 ```dart
 const String GH_ACCESS_TOKEN = '<INSERT YOUR GITHUB ACCES TOKEN HERE>';
 ```
+
+### Credentials
+Username: `test@gmail.com`
+
+Password: `123456`
