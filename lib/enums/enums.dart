@@ -4,3 +4,8 @@ enum AuthStatus {
   Authenticating,
   Unauthenticated,
 }
+
+enum Themes {
+  DARK,
+  LIGHT,
+}

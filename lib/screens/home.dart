@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:github_issues/constants/api.dart';
+import 'package:github_issues/locator.dart';
 import 'package:github_issues/models/issue/freezed_issue/freezed_issue.dart';
 import 'package:github_issues/models/issue/freezed_issue_list/freezed_issue_list.dart';
 import 'package:github_issues/providers/home_provider.dart';
+import 'package:github_issues/services/theme_service.dart';
 import 'package:github_issues/widgets/issue_list_item.dart';
 import 'package:github_issues/widgets/issue_state_icon.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -10,6 +12,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
+  final ThemeService _themeService = locator<ThemeService>();
+
   @override
   Widget build(BuildContext context) => GraphQLProvider(
         client: ValueNotifier<GraphQLClient>(
@@ -25,8 +29,7 @@ class Home extends StatelessWidget {
         ),
         child: Consumer<HomeProvider>(
           builder: (_, provider, __) => Scaffold(
-            backgroundColor: Colors.white,
-            appBar: HomeAppBar(provider),
+            appBar: HomeAppBar(provider, _themeService.isLight),
             body: Query(
               options: QueryOptions(documentNode: gql(provider.query)),
               builder: (
@@ -75,7 +78,7 @@ class Home extends StatelessWidget {
                   itemCount: issues.length + (hasNextPage ? 1 : 0),
                   padding: EdgeInsets.all(8),
                   itemBuilder: (context, index) {
-                    if (index == issues.length - 20)
+                    if (index == issues.length - NEXT_PAGE_THRESHOLD)
                       fetchMore(opts);
                     else if (index == issues.length)
                       return Padding(
@@ -89,6 +92,12 @@ class Home extends StatelessWidget {
                 );
               },
             ),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(MdiIcons.themeLightDark),
+              onPressed: () {
+                _themeService.toggle();
+              },
+            ),
           ),
         ),
       );
@@ -96,46 +105,24 @@ class Home extends StatelessWidget {
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   final HomeProvider provider;
+  final bool isThemeLight;
 
-  HomeAppBar(this.provider);
+  HomeAppBar(this.provider, this.isThemeLight);
 
   @override
   Widget build(BuildContext context) => Hero(
         tag: AppBar,
         child: AppBar(
-          backgroundColor: Colors.white,
-          bottom: PreferredSize(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search),
-                  filled: true,
-                  fillColor: Colors.black12,
-                  hintText: 'Search',
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
-            ),
-            preferredSize: Size.fromHeight(64),
-          ),
+          iconTheme: IconThemeData(color: isThemeLight ? Colors.black54 : null),
+          backgroundColor: isThemeLight ? Colors.white : null,
           centerTitle: true,
           title: Text(
             'Issues',
-            style: TextStyle(
-              color: Colors.black87,
-            ),
+            style: TextStyle(color: isThemeLight ? Colors.black87 : null),
           ),
           actions: [
             IconButton(
-              icon: Icon(MdiIcons.sort, color: Colors.black54),
+              icon: Icon(MdiIcons.sort),
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
@@ -189,7 +176,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
             ),
             IconButton(
-              icon: Icon(MdiIcons.filter, color: Colors.black54),
+              icon: Icon(MdiIcons.filter),
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
@@ -197,13 +184,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       ListTile(
-                        title: Text(
-                          'Filter by',
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2
-                              .copyWith(color: Colors.black45),
-                        ),
+                        title: Text('Filter by',
+                            style: Theme.of(context).textTheme.subtitle2),
                       ),
                       ListTile(
                         leading: IssueStateIcon("OPEN"),
@@ -231,5 +213,5 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       );
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 64);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github_issues/constants/api.dart';
 
 class HomeProvider extends ChangeNotifier {
   String _filteringBy = '',
@@ -19,7 +20,7 @@ class HomeProvider extends ChangeNotifier {
   String get query => '''
 query(\$cursor: String){
   repository(name: "flutter", owner: "flutter") {
-    issues(first: 100, after: \$cursor, orderBy: {field: $_orderingByField, direction: $_orderingByDirection}, filterBy: {$_filteringBy}) {
+    issues(first: $PER_PAGE, after: \$cursor, orderBy: {field: $_orderingByField, direction: $_orderingByDirection}, filterBy: {$_filteringBy}) {
       nodes {
         id
         number
