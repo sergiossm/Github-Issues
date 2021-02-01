@@ -160,6 +160,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           provider.orderBy('CREATED_AT', 'ASC');
                           Navigator.of(context).pop();
                         },
+                        trailing: provider.orderingByField == 'CREATED_AT' &&
+                                provider.orderingByDirection == 'ASC'
+                            ? Icon(Icons.check, color: Colors.blue)
+                            : null,
                       ),
                       ListTile(
                         leading: Icon(MdiIcons.sortCalendarDescending),
@@ -168,6 +172,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           provider.orderBy('CREATED_AT', 'DESC');
                           Navigator.of(context).pop();
                         },
+                        trailing: provider.orderingByField == 'CREATED_AT' &&
+                                provider.orderingByDirection == 'DESC'
+                            ? Icon(Icons.check, color: Colors.blue)
+                            : null,
                       ),
                       ListTile(
                         leading: Icon(MdiIcons.sortNumericAscending),
@@ -176,6 +184,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           provider.orderBy('COMMENTS', 'ASC');
                           Navigator.of(context).pop();
                         },
+                        trailing: provider.orderingByField == 'COMMENTS' &&
+                                provider.orderingByDirection == 'ASC'
+                            ? Icon(Icons.check, color: Colors.blue)
+                            : null,
                       ),
                       ListTile(
                         leading: Icon(MdiIcons.sortNumericDescending),
@@ -184,6 +196,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           provider.orderBy('COMMENTS', 'DESC');
                           Navigator.of(context).pop();
                         },
+                        trailing: provider.orderingByField == 'COMMENTS' &&
+                                provider.orderingByDirection == 'DESC'
+                            ? Icon(Icons.check, color: Colors.blue)
+                            : null,
                       ),
                     ],
                   ),
@@ -209,6 +225,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           provider.filterBy("states: OPEN");
                           Navigator.of(context).pop();
                         },
+                        trailing: provider.filteringBy == "states: OPEN"
+                            ? Icon(Icons.check, color: Colors.blue)
+                            : null,
                       ),
                       ListTile(
                         leading: IssueStateIcon("CLOSED"),
@@ -217,6 +236,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           provider.filterBy("states: CLOSED");
                           Navigator.of(context).pop();
                         },
+                        trailing: provider.filteringBy == "states: CLOSED"
+                            ? Icon(Icons.check, color: Colors.blue)
+                            : null,
                       ),
                     ],
                   ),

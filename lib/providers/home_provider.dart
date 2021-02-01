@@ -4,25 +4,25 @@ import 'package:github_issues/locator.dart';
 import 'package:github_issues/services/visited_issues_service.dart';
 
 class HomeProvider extends ChangeNotifier {
-  String _filteringBy = '',
-      _orderingByField = 'CREATED_AT',
-      _orderingByDirection = 'DESC';
+  String filteringBy = '',
+      orderingByField = 'CREATED_AT',
+      orderingByDirection = 'DESC';
 
   void filterBy(String filterBy) {
-    _filteringBy = filterBy;
+    filteringBy = filterBy == filteringBy ? '' : filterBy;
     notifyListeners();
   }
 
   void orderBy(String field, String direction) {
-    _orderingByField = field;
-    _orderingByDirection = direction;
+    orderingByField = field;
+    orderingByDirection = direction;
     notifyListeners();
   }
 
   String get query => '''
 query(\$cursor: String){
   repository(name: "flutter", owner: "flutter") {
-    issues(first: $PER_PAGE, after: \$cursor, orderBy: {field: $_orderingByField, direction: $_orderingByDirection}, filterBy: {$_filteringBy}) {
+    issues(first: $PER_PAGE, after: \$cursor, orderBy: {field: $orderingByField, direction: $orderingByDirection}, filterBy: {$filteringBy}) {
       nodes {
         id
         number
