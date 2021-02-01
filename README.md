@@ -1,16 +1,17 @@
-# github_issues
+# Flutter Github Issues
 
-A new Flutter project.
+This app displays the list of [`Flutter's Github repository issues`](https://github.com/flutter/flutter/issues) using Github's [`GraphQL`](https://pub.dev/packages/graphql_flutter) API. This list is also sorted and filtered using the API.
 
-## Getting Started
+[`Freezed`](https://pub.dev/packages/freezed) is used generate data models that are easier to build when the jsons are deserialized.
 
-This project is a starting point for a Flutter application.
+The app architecture is based on [`provider`](https://pub.dev/packages/provider) and [`GetIt`](https://pub.dev/packages/get_it).
 
-A few resources to get you started if this is your first Flutter project:
+UI is inspired by Github's mobile app.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Running
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Before running this example, generate your own [`Personal access token`](https://github.com/settings/tokens). Add it to `lib/constants/api.dart`, as shown below:
+
+```dart
+const String GH_ACCESS_TOKEN = '<INSERT YOUR GITHUB ACCES TOKEN HERE>';
+```

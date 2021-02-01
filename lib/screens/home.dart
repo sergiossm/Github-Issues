@@ -147,10 +147,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ListTile(
                         title: Text(
                           'Order by',
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle2
-                              .copyWith(color: Colors.black45),
+                          style: Theme.of(context).textTheme.subtitle2.copyWith(
+                                color: isThemeLight
+                                    ? Colors.black45
+                                    : Colors.white38,
+                              ),
                         ),
                       ),
                       ListTile(
@@ -173,30 +174,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                           Navigator.of(context).pop();
                         },
                         trailing: provider.orderingByField == 'CREATED_AT' &&
-                                provider.orderingByDirection == 'DESC'
-                            ? Icon(Icons.check, color: Colors.blue)
-                            : null,
-                      ),
-                      ListTile(
-                        leading: Icon(MdiIcons.sortNumericAscending),
-                        title: Text('Comments asc'),
-                        onTap: () {
-                          provider.orderBy('COMMENTS', 'ASC');
-                          Navigator.of(context).pop();
-                        },
-                        trailing: provider.orderingByField == 'COMMENTS' &&
-                                provider.orderingByDirection == 'ASC'
-                            ? Icon(Icons.check, color: Colors.blue)
-                            : null,
-                      ),
-                      ListTile(
-                        leading: Icon(MdiIcons.sortNumericDescending),
-                        title: Text('Comments desc'),
-                        onTap: () {
-                          provider.orderBy('COMMENTS', 'DESC');
-                          Navigator.of(context).pop();
-                        },
-                        trailing: provider.orderingByField == 'COMMENTS' &&
                                 provider.orderingByDirection == 'DESC'
                             ? Icon(Icons.check, color: Colors.blue)
                             : null,
