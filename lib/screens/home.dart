@@ -135,8 +135,59 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           actions: [
             IconButton(
-                icon: Icon(MdiIcons.sort, color: Colors.black54),
-                onPressed: () {}),
+              icon: Icon(MdiIcons.sort, color: Colors.black54),
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (_) => Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ListTile(
+                        title: Text(
+                          'Order by',
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2
+                              .copyWith(color: Colors.black45),
+                        ),
+                      ),
+                      ListTile(
+                        leading: Icon(MdiIcons.sortCalendarAscending),
+                        title: Text('Date asc'),
+                        onTap: () {
+                          provider.orderBy('CREATED_AT', 'ASC');
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(MdiIcons.sortCalendarDescending),
+                        title: Text('Date desc'),
+                        onTap: () {
+                          provider.orderBy('CREATED_AT', 'DESC');
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(MdiIcons.sortNumericAscending),
+                        title: Text('Comments asc'),
+                        onTap: () {
+                          provider.orderBy('COMMENTS', 'ASC');
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      ListTile(
+                        leading: Icon(MdiIcons.sortNumericDescending),
+                        title: Text('Comments desc'),
+                        onTap: () {
+                          provider.orderBy('COMMENTS', 'DESC');
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
             IconButton(
               icon: Icon(MdiIcons.filter, color: Colors.black54),
               onPressed: () {
@@ -159,6 +210,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         title: Text('Open'),
                         onTap: () {
                           provider.filterBy("states: OPEN");
+                          Navigator.of(context).pop();
                         },
                       ),
                       ListTile(
@@ -166,6 +218,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                         title: Text('Closed'),
                         onTap: () {
                           provider.filterBy("states: CLOSED");
+                          Navigator.of(context).pop();
                         },
                       ),
                     ],
