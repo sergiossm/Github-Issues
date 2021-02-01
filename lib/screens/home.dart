@@ -4,7 +4,9 @@ import 'package:github_issues/locator.dart';
 import 'package:github_issues/models/issue/freezed_issue/freezed_issue.dart';
 import 'package:github_issues/models/issue/freezed_issue_list/freezed_issue_list.dart';
 import 'package:github_issues/providers/home_provider.dart';
+import 'package:github_issues/screens/issue_details.dart';
 import 'package:github_issues/services/theme_service.dart';
+import 'package:github_issues/services/visited_issues_service.dart';
 import 'package:github_issues/widgets/issue_list_item.dart';
 import 'package:github_issues/widgets/issue_state_icon.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -87,7 +89,20 @@ class Home extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       );
-                    return IssueListItem(issue: issues[index]);
+                    return IssueListItem(
+                      issue: issues[index],
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => IssueDetails(issue: issues[index]),
+                          ),
+                        );
+                        provider.updateVisitedIssuesList(issues[index].id);
+                      },
+                      visited: locator<VisitedIssueService>()
+                          .visitedIssuesList
+                          .contains(issues[index].id),
+                    );
                   },
                 );
               },

@@ -9,14 +9,11 @@ class ThemeService {
   Stream<bool> get lightTheme => _lightThemeController.stream;
   final _lightThemeController = BehaviorSubject<bool>.seeded(true);
   bool get isLight => _lightThemeController.value;
+  final SharedPreferences _preferences;
 
-  ThemeService();
-
-  Future<void> init() async {
+  ThemeService(SharedPreferences prefs) : _preferences = prefs {
     _lightThemeController.add(
-      (await SharedPreferences.getInstance()).getString(THEME) ==
-              Themes.LIGHT.toString() ??
-          true,
+      _preferences.getString(THEME) == Themes.LIGHT.toString() ?? true,
     );
   }
 

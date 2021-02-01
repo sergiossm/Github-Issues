@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:github_issues/constants/api.dart';
+import 'package:github_issues/locator.dart';
+import 'package:github_issues/services/visited_issues_service.dart';
 
 class HomeProvider extends ChangeNotifier {
   String _filteringBy = '',
@@ -51,4 +53,9 @@ query(\$cursor: String){
   }
 }
 ''';
+
+  void updateVisitedIssuesList(String id) {
+    locator<VisitedIssueService>().markIssueAsVisited(id);
+    notifyListeners();
+  }
 }
